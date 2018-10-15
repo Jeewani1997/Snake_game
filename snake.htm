@@ -1,0 +1,149 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<title>Snake game</title>
+<style>
+
+  html{
+     text-align: center;
+     font-family: Helvetica, Arial, Helvetica, sans-serif;
+  }
+
+</style>
+</head>
+<body onload="initGame()" onkeydown="enterKey(event)">
+
+     <h1>Play Snake</h1>
+<style>
+#board div {
+    background-color: green;
+    border: 1px solid grey;
+    box-sizing: border-box;
+    float: left;
+    width: 30px;
+    height: 30px;
+}
+#board {
+    width: calc(26 * 30px);
+    margin: auto;
+}
+#board .snake {
+    background-color: red;
+}
+</style>
+     <div id="board"></div>
+
+    <script>
+
+var snakeX;
+var snakeY;
+var snakeDirection;
+var snakeLength;
+
+   const board = [];
+   const boardWidth = 26, boardHeight = 16;
+
+    function initGame() {
+
+       const boardElement = document.getElementById('board');
+
+
+                var cell = {
+                  snake: 0
+                 };
+          for (var y = 0; y < boardHeight; ++y) {
+        var row = [];
+        for (var x = 0; x < boardWidth; ++x) {
+            var cell = {};
+            
+            // Create a <div></div> and store it in the cell object
+            cell.element = document.createElement('div');
+            
+            // Add it to the board
+            boardElement.appendChild(cell.element);
+
+            // Add to list of all
+            row.push(cell);
+        }
+
+        // Add this row to the board
+        board.push(row);
+ 
+
+         }
+
+
+    startGame();
+
+    }
+function startGame() {
+
+    // Default position for the snake in the middle of the board.
+    snakeX = Math.floor(boardWidth / 2);
+    snakeY = Math.floor(boardHeight / 2);
+    snakeLength = 5;
+    snakeDirection = 'Up';
+
+     
+
+  
+
+    // Set the center of the board to contain a snake
+    board[snakeY][snakeX].snake = 1;
+
+       gameLoop();
+
+       
+}
+
+function gameLoop() {
+         switch (snakeDirection) {
+        case 'Up':    snakeY--; break;
+        case 'Down':  snakeY++; break;
+        case 'Left':  snakeX--; break;
+        case 'Right': snakeX++; break;
+    }
+
+
+   if (snakeX < 0 || snakeY < 0 || snakeX >= boardWidth || snakeY >= boardHeight) {
+    startGame()
+}
+           board[snakeY][snakeX].snake = 1;
+       
+           for (var y = 0; y < boardHeight; ++y) {
+        for (var x = 0; x < boardWidth; ++x) {
+            var cell = board[y][x];
+
+            if (cell.snake) {
+                cell.element.className = 'snake';
+            }
+            else {
+                cell.element.className = '';
+            }
+        }
+    }
+
+        // This function calls itself, with a timeout of 1000 milliseconds
+        setTimeout(gameLoop, 1000);
+
+
+    }
+function enterKey(event) {
+        // Update direction depending on key hit
+     switch (event.key) {
+            case 'ArrowUp': snakeDirection = 'Up'; break;
+            case 'ArrowDown': snakeDirection = 'Down'; break;
+            case 'ArrowLeft': snakeDirection = 'Left'; break;
+            case 'ArrowRight': snakeDirection = 'Right'; break;
+            default: return;
+        }
+
+        // This prevents the arrow keys from scrolling the window
+        event.preventDefault();
+    }
+
+    </script>
+</body>
+</html>
+
+    
