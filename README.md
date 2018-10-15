@@ -12,3 +12,6 @@ When the snake eats a ball ,the score increases by one.
 
 ## Screenshots
 
+
+        Snake_game/snake.PNG
+      
