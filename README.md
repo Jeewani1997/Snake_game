@@ -9,6 +9,8 @@ When the snake eats a ball ,the score increases by one.
 * Right keyboard arrow    -> Turn snak right
 * Upward keyboard arrow   -> Turn snake upward
 * Downward keyboard arrow -> Turn snake downward
+\
+Jeewani
 
 ## Screenshots
 
